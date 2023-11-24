@@ -9,6 +9,22 @@ var p1, p2, p3, p4;               //string variables to modify innerHTML
 $(document).ready(function () {
     $("td ").click(function () {
         var num = Number(this.getAttribute("value"));
+
+        var radioButtons = document.getElementsByName('betTypeOption');
+
+        // Initialize a variable to store the selected value
+        var selectedOption = null;
+
+        // Loop through each radio button to find the selected one
+        for (var i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].checked) {
+                selectedOption = radioButtons[i].value;
+                break; // Exit the loop once the selected radio button is found
+            }
+        }
+
+        var betType = Number(selectedOption);
+
         resultList.push(num);
 
         if (num == 0) {
@@ -26,12 +42,12 @@ $(document).ready(function () {
         }
         else {
             var clr = String(this.getAttribute("class"));
-            pattern(num, clr);
+            pattern(num, clr, betType);
         }
     });
 });
 
-function pattern(num, clr) {
+function pattern(num, clr, betType) {
     if (color_pattern.length == 0) {
         color_pattern.push(num);
         type_pattern.push(num);
@@ -69,7 +85,7 @@ function pattern(num, clr) {
         }
     }
 
-    if (color_pattern.length > 4) {
+    if (color_pattern.length > betType) {
         if (props[0] == "black") {
             opp = "Red";
         }
@@ -84,7 +100,7 @@ function pattern(num, clr) {
         p1 = "<p>Black/Red:</p><p>" + color_pattern_list2 + "</p>";
     }
 
-    if (type_pattern.length > 4) {
+    if (type_pattern.length > betType) {
         if (props[1] == "even") {
             opp = "Odd";
         }
@@ -99,7 +115,7 @@ function pattern(num, clr) {
         p2 = "<p>Odd/Even:</p><p>" + type_pattern_list2 + "</p>";
     }
 
-    if (size_pattern.length > 4) {
+    if (size_pattern.length > betType) {
         if (props[2] == "high") {
             opp = "Low [1-18]";
         }
