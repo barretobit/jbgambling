@@ -75,13 +75,13 @@ function pattern(num, clr) {
         }
         else {
             opp = "Black";
-            var color_pattern_list = color_pattern.join(', ');
-            p1 = "<p>Black/Red:</p><p>" + color_pattern_list + "<br><br>" + color_pattern.length + " " + props[0] + "s in a row.<br><h2>Bet: " + opp + "<h2></p>";
         }
+        var color_pattern_list = color_pattern.join(', ');
+        p1 = "<p>Black/Red:</p><p>" + color_pattern_list + "<br><br>" + color_pattern.length + " " + props[0] + "s in a row.<br><h2>Bet: " + opp + "<h2></p>";
     }
     else {
-        var color_pattern_list = color_pattern.join(', ');
-        p1 = "<p>Black/Red:</p><p>" + color_pattern_list + "</p>";
+        var color_pattern_list2 = color_pattern.join(', ');
+        p1 = "<p>Black/Red:</p><p>" + color_pattern_list2 + "</p>";
     }
 
     if (type_pattern.length > 4) {
@@ -90,13 +90,13 @@ function pattern(num, clr) {
         }
         else {
             opp = "Even";
-            var type_pattern_list = type_pattern.join(', ');
-            p2 = "<p>Odd/Even:</p><p>" + type_pattern_list + "<br><br>" + type_pattern.length + " " + props[1] + "s in a row.<br><h2>Bet: " + opp + "<h2></p>";
         }
+        var type_pattern_list = type_pattern.join(', ');
+        p2 = "<p>Odd/Even:</p><p>" + type_pattern_list + "<br><br>" + type_pattern.length + " " + props[1] + "s in a row.<br><h2>Bet: " + opp + "<h2></p>";
     }
     else {
-        var type_pattern_list = type_pattern.join(', ');
-        p2 = "<p>Odd/Even:</p><p>" + type_pattern_list + "</p>";
+        var type_pattern_list2 = type_pattern.join(', ');
+        p2 = "<p>Odd/Even:</p><p>" + type_pattern_list2 + "</p>";
     }
 
     if (size_pattern.length > 4) {
@@ -105,13 +105,13 @@ function pattern(num, clr) {
         }
         else {
             opp = "High [19-36]";
-            var size_pattern_list = size_pattern.join(', ');
-            p3 = "<p>High/Low:</p><p>" + size_pattern_list + "<br><br>" + size_pattern.length + " " + props[2] + "s in a row.<br><h2>Bet: " + opp + "<h2></p>";
         }
+        var size_pattern_list2 = size_pattern.join(', ');
+        p3 = "<p>High/Low:</p><p>" + size_pattern_list2 + "<br><br>" + size_pattern.length + " " + props[2] + "s in a row.<br><h2>Bet: " + opp + "<h2></p>";
     }
     else {
-        var size_pattern_list = size_pattern.join(', ');
-        p3 = "<p>High/Low:</p><p>" + size_pattern_list + "</p>";
+        var size_pattern_list2 = size_pattern.join(', ');
+        p3 = "<p>High/Low:</p><p>" + size_pattern_list2 + "</p>";
     }
 
     $("#pattern1").html(p1);
