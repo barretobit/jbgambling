@@ -3,7 +3,6 @@ html * {
 }
 
 #roulette_chart {
-    /* background-color: rgb(57, 59, 58); */
     width: 100%;
     height: auto;
     padding-bottom: 40px;
@@ -44,55 +43,41 @@ td:hover {
     background-color: rgba(0, 0, 0, 0.425);
 }
 
-/* .black:hover {
-    background-color: rgba(0, 0, 0, 0.589);
-} */
-
 .red {
     background-color: rgba(170, 14, 14, 0.336);
 }
 
-/* .red:hover {
-    background-color: rgba(255, 0, 0, 0.527);
-} */
-
 #results {
     margin-left: 20%;
-    /* background-color: lightblue; */
 }
 
 #results2 {
     margin-left: 15%;
     margin-right: 15%;
-    /* background-color: lightblue; */
 }
 
 .patterns {
     float: left;
     position: relative;
     min-width: 25%;
-    /* min-height: 20%; */
     background-color: rgb(70, 70, 70);
     border: 1px solid;
     border-color: black;
     border-collapse: collapse;
     text-align: center;
     font-weight: bold;
-    color:gray;
+    color: gray;
 }
 
 .resultHistList {
-    /* float: left; */
     position: relative;
-    /* max-width: 730px; */
-    /* min-height: 20%; */
     background-color: rgb(70, 70, 70);
     border: 1px solid;
     border-color: black;
     border-collapse: collapse;
     text-align: center;
     font-weight: bold;
-    color:gray;
+    color: gray;
 }
 
 html {
