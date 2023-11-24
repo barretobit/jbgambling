@@ -1,143 +1,154 @@
-var color_pattern=[];           //red or black 
-var type_pattern=[];            //even or odd
-var size_pattern=[];            //high or low
-var props=[null, null, null];   //stores the common properties. [color, type, size]
-var opp;                        //stores opposite property
-var p1,p2,p3;                   //string variables to modify innerHTML
+var color_pattern = [];           //red or black 
+var type_pattern = [];            //even or odd
+var size_pattern = [];            //high or low
+var props = [null, null, null];   //stores the common properties. [color, type, size]
+var opp;                          //stores opposite property
+var resultList = [];              //stores every number that came out
+var p1, p2, p3, p4;               //string variables to modify innerHTML
 
-
-$(document).ready(function()
+$(document).ready(function () 
 {
-    $("td ").click(function()
-    {        
-        var num=Number(this.getAttribute("value"));
-        if (num==0)
+    $("td ").click(function () 
+    {
+        var num = Number(this.getAttribute("value"));
+        resultList.push(num);
+
+        if (num == 0) 
         {
-            color_pattern=[];
-            type_pattern=[];
-            size_pattern=[];
-            $("#pattern1").html("<p>0</p>");
-            $("#pattern2").html("<p>0</p>");
-            $("#pattern3").html("<p>0</p>");
+            color_pattern = [];
+            type_pattern = [];
+            size_pattern = [];
+            $("#pattern1").html("<p>Black/Red:</p>");
+            $("#pattern2").html("<p>Odd/Even:</p>");
+            $("#pattern3").html("<p>High/Low:</p>");
+
+            var resultListString = resultList.join(', ');
+            p4 = "<p>Results History:</p><p>" + resultListString + "</p>";
+            $("#resultHist").html(p4);
         }
-        else
+        else 
         {
-            var clr=String(this.getAttribute("class"));
-            pattern(num, clr);            
-        } 
+            var clr = String(this.getAttribute("class"));
+            pattern(num, clr);
+        }
     });
 });
 
-function set_props(num, clr)
+function pattern(num, clr) 
 {
-    var temp_props=[null, null, null];
-    temp_props[0]=clr;
-    if (num%2==0)
-    {
-        temp_props[1]="even";
-    }
-    else
-    {
-        temp_props[1]="odd";
-    }
-    if (num<19)
-    {
-        temp_props[2]="low";
-    }
-    else
-    {
-        temp_props[2]="high";
-    }
-    return temp_props;
-}
-
-function pattern(num, clr)
-{    
-    if(color_pattern.length==0)
+    if (color_pattern.length == 0) 
     {
         color_pattern.push(num);
         type_pattern.push(num);
         size_pattern.push(num);
-        props=set_props(num, clr);        
+        props = set_props(num, clr);
     }
-    else
+    else 
     {
-        temp_props=set_props(num, clr);
+        temp_props = set_props(num, clr);
 
-        if (props[0]==temp_props[0])
+        if (props[0] == temp_props[0]) 
         {
             color_pattern.push(num);
         }
-        else
+        else 
         {
-            color_pattern=[];
+            color_pattern = [];
             color_pattern.push(num);
-            props[0]=temp_props[0];
+            props[0] = temp_props[0];
         }
 
-        if (props[1]==temp_props[1])
+        if (props[1] == temp_props[1]) 
         {
             type_pattern.push(num);
         }
-        else
+        else 
         {
-            type_pattern=[];
+            type_pattern = [];
             type_pattern.push(num);
-            props[1]=temp_props[1];
+            props[1] = temp_props[1];
         }
 
-        if (props[2]==temp_props[2])
+        if (props[2] == temp_props[2]) 
         {
             size_pattern.push(num);
         }
-        else
+        else 
         {
-            size_pattern=[];
+            size_pattern = [];
             size_pattern.push(num);
-            props[2]=temp_props[2];
+            props[2] = temp_props[2];
         }
     }
 
-    if (color_pattern.length>4)
+    if (color_pattern.length > 4) 
     {
-        if (props[0]=="black")
-        opp="Red";
+        if (props[0] == "black")
+            opp = "Red";
         else
-        opp="Black";
-        p1="<p>"+color_pattern+"<br>"+color_pattern.length+" "+props[0]+" numbers detected.<br><h2>Bet: "+opp+"<h2></p>";
+            opp = "Black";
+        p1 = "<p>Black/Red:</p><p>" + color_pattern + "<br><br>" + color_pattern.length + " " + props[0] + "s in a row.<br><h2>Bet: " + opp + "<h2></p>";
     }
     else 
     {
-        p1="<p>"+color_pattern+"</p>";
+        p1 = "<p>Black/Red:</p><p>" + color_pattern + "</p>";
     }
 
-    if (type_pattern.length>4)
+    if (type_pattern.length > 4) 
     {
-        if (props[1]=="even")
-            opp="Odd";
+        if (props[1] == "even")
+            opp = "Odd";
         else
-            opp="Even";
-            p2="<p>"+type_pattern+"<br>"+type_pattern.length+" "+props[1]+" numbers detected.<br><h2>Bet: "+opp+"<h2></p>";
+            opp = "Even";
+        p2 = "<p>Odd/Even:</p><p>" + type_pattern + "<br><br>" + type_pattern.length + " " + props[1] + "s in a row.<br><h2>Bet: " + opp + "<h2></p>";
     }
     else 
     {
-        p2="<p>"+type_pattern+"</p>";
+        p2 = "<p>Odd/Even:</p><p>" + type_pattern + "</p>";
     }
 
-    if (size_pattern.length>4)
+    if (size_pattern.length > 4) 
     {
-        if (props[2]=="high")
-            opp="Low [1-18]";
+        if (props[2] == "high")
+            opp = "Low [1-18]";
         else
-            opp="High [19-36]";
-            p3="<p>"+size_pattern+"<br>"+size_pattern.length+" "+props[2]+" numbers detected.<br><h2>Bet: "+opp+"<h2></p>";
+            opp = "High [19-36]";
+        p3 = "<p>High/Low:</p><p>" + size_pattern + "<br><br>" + size_pattern.length + " " + props[2] + "s in a row.<br><h2>Bet: " + opp + "<h2></p>";
     }
     else 
     {
-        p3="<p>"+size_pattern+"</p>";
+        p3 = "<p>High/Low:</p><p>" + size_pattern + "</p>";
     }
-
     $("#pattern1").html(p1);
     $("#pattern2").html(p2);
     $("#pattern3").html(p3);
-}   
+
+    var resultListString = resultList.join(', ');
+    p4 = "<p>Results History:</p><p>" + resultListString + "</p>";
+    $("#resultHist").html(p4);
+}
+
+function set_props(num, clr) 
+{
+    var temp_props = [null, null, null];
+    temp_props[0] = clr;
+
+    if (num % 2 == 0) 
+    {
+        temp_props[1] = "even";
+    }
+    else 
+    {
+        temp_props[1] = "odd";
+    }
+    if (num < 19) 
+    {
+        temp_props[2] = "low";
+    }
+    else 
+    {
+        temp_props[2] = "high";
+    }
+
+    return temp_props;
+}
