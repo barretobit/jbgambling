@@ -9,8 +9,7 @@ var p1,p2,p3;                   //string variables to modify innerHTML
 $(document).ready(function()
 {
     $("td ").click(function()
-    {
-        
+    {        
         var num=Number(this.getAttribute("value"));
         if (num==0)
         {
@@ -25,12 +24,9 @@ $(document).ready(function()
         {
             var clr=String(this.getAttribute("class"));
             pattern(num, clr);            
-        }
- 
+        } 
     });
 });
-
-
 
 function set_props(num, clr)
 {
@@ -56,15 +52,13 @@ function set_props(num, clr)
 }
 
 function pattern(num, clr)
-{
-    
+{    
     if(color_pattern.length==0)
     {
         color_pattern.push(num);
         type_pattern.push(num);
         size_pattern.push(num);
-        props=set_props(num, clr);
-        
+        props=set_props(num, clr);        
     }
     else
     {
@@ -107,39 +101,43 @@ function pattern(num, clr)
     if (color_pattern.length>4)
     {
         if (props[0]=="black")
-        opp="red";
+        opp="Red";
         else
-        opp="black";
-        p1="<p>"+color_pattern+"<br>"+color_pattern.length+" "+props[0]+" numbers detected.<br><h2>Stake on "+opp+" !!<h2></p>";
+        opp="Black";
+        p1="<p>"+color_pattern+"<br>"+color_pattern.length+" "+props[0]+" numbers detected.<br><h2>Bet: "+opp+"<h2></p>";
     }
-    else
-    p1="<p>"+color_pattern+"</p>";
+    else 
+    {
+        p1="<p>"+color_pattern+"</p>";
+    }
 
     if (type_pattern.length>4)
     {
         if (props[1]=="even")
-        opp="odd";
+            opp="Odd";
         else
-        opp="even";
-        p2="<p>"+type_pattern+"<br>"+type_pattern.length+" "+props[1]+" numbers detected.<br><h2>Stake on "+opp+" !!<h2></p>";
+            opp="Even";
+            p2="<p>"+type_pattern+"<br>"+type_pattern.length+" "+props[1]+" numbers detected.<br><h2>Bet: "+opp+"<h2></p>";
     }
-    else
-    p2="<p>"+type_pattern+"</p>";
-
+    else 
+    {
+        p2="<p>"+type_pattern+"</p>";
+    }
 
     if (size_pattern.length>4)
     {
         if (props[2]=="high")
-        opp="low";
+            opp="Low [1-18]";
         else
-        opp="high";
-        p3="<p>"+size_pattern+"<br>"+size_pattern.length+" "+props[2]+" numbers detected.<br><h2>Stake on "+opp+" !!<h2></p>";
+            opp="High [19-36]";
+            p3="<p>"+size_pattern+"<br>"+size_pattern.length+" "+props[2]+" numbers detected.<br><h2>Bet: "+opp+"<h2></p>";
     }
-    else
-    p3="<p>"+size_pattern+"</p>";
+    else 
+    {
+        p3="<p>"+size_pattern+"</p>";
+    }
 
     $("#pattern1").html(p1);
     $("#pattern2").html(p2);
     $("#pattern3").html(p3);
-
 }   
