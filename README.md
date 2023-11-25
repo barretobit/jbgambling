@@ -1,2 +1,2 @@
-# what2bet
-Roulette Bet Predictor
+# JB Gambling
+Gambling Tips, Bet Predictor, Strategy Analysis.
