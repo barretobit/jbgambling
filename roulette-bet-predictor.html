@@ -118,23 +118,24 @@
         }
 
         var betType = Number(selectedOption);
-
-        resultList.push(num);
-
-        if (num == 0) {
-          color_pattern = [];
-          type_pattern = [];
-          size_pattern = [];
-          document.getElementById("pattern1").innerHTML = "<p>Black/Red:</p>";
-          document.getElementById("pattern2").innerHTML = "<p>Odd/Even:</p>";
-          document.getElementById("pattern3").innerHTML = "<p>High/Low:</p>";
-          resultList = [];
-          var resultListString = resultList.join(", ");
-          p4 = "<p>Results History: " + resultListString + "</p>";
-          document.getElementById("resultHist").innerHTML = p4;
-        } else {
-          var clr = checkRouletteColor(num);
-          pattern(num, clr, betType);
+        
+        if (num >= 0 && num <= 36) {
+          resultList.push(num);
+          if (num == 0) {
+            color_pattern = [];
+            type_pattern = [];
+            size_pattern = [];
+            document.getElementById("pattern1").innerHTML = "<p>Black/Red:</p>";
+            document.getElementById("pattern2").innerHTML = "<p>Odd/Even:</p>";
+            document.getElementById("pattern3").innerHTML = "<p>High/Low:</p>";
+            resultList = [];
+            var resultListString = resultList.join(", ");
+            p4 = "<p>Results History: " + resultListString + "</p>";
+            document.getElementById("resultHist").innerHTML = p4;
+          } else {
+            var clr = checkRouletteColor(num);
+            pattern(num, clr, betType);
+          }
         }
         numberInput.value = "";
       }
