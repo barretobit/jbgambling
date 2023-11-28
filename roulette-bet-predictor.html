@@ -70,7 +70,9 @@
   <body>
     <div class="input-container">
       <div class="radio-group">
-        <label class="radio-inline"> <input type="radio" name="safetyLevel" value="4" checked /> Safe &nbsp;&nbsp;</label>
+        <label class="radio-inline">
+          <input type="radio" name="safetyLevel" value="4" checked /> Safe &nbsp;&nbsp;</label
+        >
         <label class="radio-inline"> <input type="radio" name="safetyLevel" value="5" /> Safer &nbsp;</label>
         <label class="radio-inline"> <input type="radio" name="safetyLevel" value="6" /> +Safer</label>
       </div>
@@ -134,7 +136,15 @@
           var clr = checkRouletteColor(num);
           pattern(num, clr, betType);
         }
+        numberInput.value = "";
       }
+
+      document.getElementById("numberInput").addEventListener("keypress", function (event) {
+        // Check if the 'Enter' key (key code 13) is pressed
+        if (event.key === "Enter") {
+          submitNumber(); // Call the submitNumber function when 'Enter' key is pressed
+        }
+      });
 
       function removePrevious() {
         if (resultList.length > 0) {
