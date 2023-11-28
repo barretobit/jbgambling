@@ -1,0 +1,56 @@
+/* .centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.title-cell {
+  background-color: white;
+  color: black;
+  border-radius: 12px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.button-cell {
+  padding-bottom: 10px;
+} */
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #343a40; /* Set background color for dark mode */
+  color: #fff; /* Set text color to white for better contrast */
+}
+
+.btn-group-vertical-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  background-color: #007bff; /* Default button color */
+  border-color: #007bff; /* Default button border color */
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Button hover color */
+  border-color: #0056b3; /* Button hover border color */
+}
+
+@media (max-width: 576px) {
+  .btn-group-vertical-center {
+    flex-direction: row;
+  }
+}
