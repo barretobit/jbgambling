@@ -1,0 +1,47 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #343a40; 
+  color: #fff; 
+}
+
+.main-input-container {
+  text-align: center;
+  vertical-align: middle;
+}
+.input-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+input[type="number"] {
+  font-size: 20px;
+  width: 50px;
+  height: 40px;
+  background-color: #495057;
+  color: #fff; 
+}
+
+input[type="number"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); 
+}
+
+.radio-group {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.radio-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.error-message {
+  color: red;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
