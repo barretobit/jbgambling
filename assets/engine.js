@@ -151,15 +151,25 @@ function render() {
     .reverse()
     .map((s) => `${s.number} (${s.color}, D${s.dozen || "-"})`)
     .join("\n");
-  // document.getElementById("log").innerText = `Last spins:\n${recent}\n\n${suggestBet()}`;
   document.getElementById("log").innerText = `${suggestions}\n\nLast spins:\n${recent}`;
 }
 
 const input = document.getElementById("numberInput");
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    const n = parseInt(input.value);
-    if (!isNaN(n) && n >= 0 && n <= 36) addSpin(n);
+    const value = input.value.trim();
+    if (value === "-1") {
+      // Remove the last spin
+      if (state.spins.length > 0) {
+        state.spins.pop();
+        render();
+      }
+    } else {
+      const n = parseInt(value);
+      if (!isNaN(n) && n >= 0 && n <= 36) {
+        addSpin(n);
+      }
+    }
     input.value = "";
   }
 });
