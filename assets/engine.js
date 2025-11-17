@@ -1,6 +1,7 @@
 const state = { spins: [] };
 let streakTrigger = 5;
 let dozenStreakTrigger = streakTrigger + 6;
+let columnStreakTrigger = streakTrigger + 6;
 
 const slider = document.getElementById("streakSlider");
 const streakLabel = document.getElementById("streakValue");
@@ -17,28 +18,52 @@ function getColor(n) {
   return r.includes(n) ? "Red" : "Black";
 }
 
+function getColumn(n) {
+  if (n === 0) return null; // 0 does not belong to any column
+  const mod = n % 3;
+  if (mod === 1) return 1;
+  if (mod === 2) return 2;
+  return 3; // mod === 0
+}
+
 function getDozen(n) {
   return n === 0 ? null : Math.floor((n - 1) / 12) + 1;
 }
 
 function getDozenAbsenceStreaks() {
-  // result will contain how many consecutive spins have passed since each dozen last appeared
   const result = { 1: 0, 2: 0, 3: 0 };
 
-  // For each dozen, walk backwards until we find it
   for (const d of [1, 2, 3]) {
     let count = 0;
     for (let i = state.spins.length - 1; i >= 0; i--) {
       const spinDozen = state.spins[i].dozen;
       if (spinDozen === d) {
-        // found this dozen — stop counting
         break;
       } else {
         count++;
       }
     }
-    // if the dozen never appeared, count will equal state.spins.length (all spins are without that dozen)
+
     result[d] = count;
+  }
+
+  return result;
+}
+
+function getColumnAbsenceStreaks() {
+  const result = { 1: 0, 2: 0, 3: 0 };
+
+  for (const c of [1, 2, 3]) {
+    let count = 0;
+    for (let i = state.spins.length - 1; i >= 0; i--) {
+      const spinColumn = state.spins[i].column;
+      if (spinColumn === c) {
+        break;
+      } else {
+        count++;
+      }
+    }
+    result[c] = count;
   }
 
   return result;
@@ -84,12 +109,21 @@ function suggestBet() {
     suggestions.push(`High/Low streak: Bet ${highStreak.value ? "1-18" : "19-36"} (streak ${highStreak.count})`);
   }
 
-  // Dozen absence (not appearing in last X spins)
+  // Dozen absence
   const dozenAbsenceStreaks = getDozenAbsenceStreaks();
   for (const dozen in dozenAbsenceStreaks) {
     const streak = dozenAbsenceStreaks[dozen];
     if (streak >= dozenStreakTrigger) {
       suggestions.push(`Dozen absence: Bet ${dozen}° dozen (streak ${streak})`);
+    }
+  }
+
+  // Column absence
+  const columnAbs = getColumnAbsenceStreaks();
+  for (const col in columnAbs) {
+    const streak = columnAbs[col];
+    if (streak >= columnStreakTrigger) {
+      suggestions.push(`Column absence: Bet ${col}° column (streak ${streak})`);
     }
   }
 
@@ -102,6 +136,7 @@ function addSpin(n) {
     number: n,
     color: getColor(n),
     dozen: getDozen(n),
+    column: getColumn(n),
     isEven: n === 0 ? null : n % 2 === 0,
     isHigh: n === 0 ? null : n > 18,
   };
@@ -110,11 +145,14 @@ function addSpin(n) {
 }
 
 function render() {
+  const suggestions = suggestBet(); 
   const recent = state.spins
     .slice(-20)
+    .reverse()
     .map((s) => `${s.number} (${s.color}, D${s.dozen || "-"})`)
     .join("\n");
-  document.getElementById("log").innerText = `Last spins:\n${recent}\n\n${suggestBet()}`;
+  // document.getElementById("log").innerText = `Last spins:\n${recent}\n\n${suggestBet()}`;
+  document.getElementById("log").innerText = `${suggestions}\n\nLast spins:\n${recent}`;
 }
 
 const input = document.getElementById("numberInput");
