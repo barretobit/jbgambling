@@ -1,0 +1,79 @@
+body {
+  background: #111;
+  color: rgb(0, 185, 0);
+  font-family: monospace;
+  padding: 1em;
+}
+input {
+  background: #222;
+  color: rgb(0, 185, 0);
+  border: none;
+  padding: 0.5em;
+  width: 100px;
+}
+#log {
+  margin-top: 1em;
+  white-space: pre-line;
+}
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+/* RANGE SLIDER STYLES */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100px;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #707070;
+  border-radius: 7px;
+  height: 5px;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -1px; /* Centers thumb on the track */
+  background-color: #05940f;
+  border-radius: 7.5px;
+  height: 7px;
+  width: 11.5px;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 3px solid #05940f;
+  outline-offset: 0.125rem;
+}
+
+/* slider track */
+input[type="range"]::-moz-range-track {
+  background-color: #707070;
+  border-radius: 7px;
+  height: 5px;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  background-color: #05940f;
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 7.5px;
+  height: 7px;
+  width: 11.5px;
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  outline: 3px solid #05940f;
+  outline-offset: 0.125rem;
+}
